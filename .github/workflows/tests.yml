@@ -37,15 +37,13 @@ jobs:
             node-version: 10.x
     steps:
       - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - run: git checkout a0648b87fd3030d7c26fe0ce1424a69273d98d3f
       - name: Use Node.js ${{ matrix.node-version || env.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version || env.node-version }}
       - name: Use Electron ${{ matrix.electron }}
-        run: npm install --save-dev --package-lock-only electron@${{ matrix.electron }}
+        run: |
+          npm install --save-dev --package-lock-only electron@${{ matrix.electron }}
       - name: Install
         run: npm ci
       - name: Install libgbm1 (Linux)
