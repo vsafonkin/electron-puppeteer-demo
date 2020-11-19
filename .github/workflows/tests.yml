@@ -43,6 +43,7 @@ jobs:
           node-version: ${{ matrix.node-version || env.node-version }}
       - name: Use Electron ${{ matrix.electron }}
         run: |
+          npm install
           npm install --save-dev --package-lock-only electron@${{ matrix.electron }}
       - name: Install
         run: npm ci
